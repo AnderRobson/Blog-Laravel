@@ -13,23 +13,11 @@
 
 use App\model\admin\Banner;
 
-Route::get('/', function () {
+Route::get('/', 'SiteController@index')->name('site.home');
 
-    $banner = new Banner();
-    $banners = $banner->find();
+Route::get('/cursos', 'SiteController@courses')->name('site.courses');
 
-    return view('site.home', [
-        'banners' => $banners
-    ]);
-})->name('site.home');
-
-Route::get('/cursos', function () {
-    return view('site.courses');
-})->name('site.courses');
-
-Route::get('/contato', function () {
-    return view('site.contact');
-})->name('site.contact');
+Route::get('/contato', 'SiteController@contact')->name('site.contact');
 
 Auth::routes();
 
